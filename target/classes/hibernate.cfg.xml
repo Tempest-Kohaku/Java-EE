@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory>
+        <!-- Database Connection Settings for Java DB (Derby) -->
+        <property name="hibernate.connection.driver_class">org.apache.derby.jdbc.ClientDriver</property>
+        <property name="hibernate.connection.url">jdbc:derby://localhost:1527/javapj;create=true</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.password">root</property>
+
+        <!-- Hibernate Dialect for Derby -->
+        <property name="hibernate.dialect">org.hibernate.dialect.DerbyDialect</property>
+
+        <!-- Hibernate Settings -->
+        <property name="hibernate.show_sql">true</property>
+        <property name="hibernate.format_sql">true</property>
+        <property name="hibernate.hbm2ddl.auto">update</property>
+
+        <!-- Entity Mappings -->
+        <mapping class="kratos.model.User"/>
+        <mapping class="kratos.model.Doctor"/>
+        <mapping class="kratos.model.Appointment"/>
+        <mapping class="kratos.model.Prescription"/>
+
+    </session-factory>
+</hibernate-configuration>
