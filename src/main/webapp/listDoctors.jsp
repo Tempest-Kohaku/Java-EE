@@ -72,10 +72,25 @@
         .btn-primary:hover {
             background-color: #0056b3;
         }
+        .btn-secondary {
+            display: flex;
+            background-color: #007BFF; /* Blue background */
+            color: white; /* White text */
+        }
+        .btn-secondary:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+        .back-button {
+            padding: 11px 20px;
+            position: absolute;
+            right: 52px; /* Adjust as needed */
+            bottom: 666px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
+        <a href="patientDashboard.jsp" class="btn btn-secondary back-button">Back to Dashboard</a>                            
         <h2><i class="fas fa-user-md icon"></i>Available Doctors</h2>
         <table>
             <thead>

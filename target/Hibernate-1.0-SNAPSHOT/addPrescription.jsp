@@ -24,6 +24,7 @@
             width: 90%;
             max-width: 600px;
             margin: 40px auto;
+            position: relative; /* Added this line */
         }
         h1 {
             color: #333;
@@ -74,6 +75,20 @@
         .btn-success:hover {
             background-color: #1e7e34;
         }
+        .btn-primary {
+            display: flex;
+            background-color: #007BFF; /* Blue background */
+            color: white; /* White text */
+        }
+        .btn-primary:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+        .back-button {
+            padding: 11px 20px;
+            position: absolute;
+            bottom: 55px; /* Adjust as needed */
+            right: 27px; /* Adjust as needed */
+        }
     </style>
 </head>
 <body>
@@ -95,6 +110,7 @@
             </div>
             <button type="submit" class="btn btn-success">Submit Prescription</button>
         </form>
+        <a href="doctorDashboard.jsp" class="btn btn-primary back-button">Back to Dashboard</a>                            
     </div>
 </body>
 </html>
