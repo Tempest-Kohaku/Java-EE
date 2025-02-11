@@ -10,6 +10,55 @@
     <!-- Import Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
+        /* Ripple Background Container */
+        .ripple-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Place behind other content */
+            overflow: hidden;
+        }
+        .ripple-container::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 250px;
+            height: 250px;
+            background: radial-gradient(circle, #ff0000 10%, transparent 70%);
+            transform: translate(-50%, -50%) scale(1);
+            /* Two animations: one for ripple expansion and one for changing colors */
+            animation: ripple 4s infinite, changeColor 12s infinite;
+        }
+        @keyframes ripple {
+            0% {
+                transform: translate(-50%, -50%) scale(0.5);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(4);
+                opacity: 0;
+            }
+        }
+        @keyframes changeColor {
+            0%   { background: radial-gradient(circle, #ff0000 10%, transparent 70%); }
+            33%  { background: radial-gradient(circle, #00ff00 10%, transparent 70%); }
+            66%  { background: radial-gradient(circle, #0000ff 10%, transparent 70%); }
+            100% { background: radial-gradient(circle, #ff0000 10%, transparent 70%); }
+        }
+        
+        /* General Body Styling */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
         /* General Body Styling */
         body {
             font-family: 'Poppins', sans-serif;
@@ -144,6 +193,7 @@
     </style>
 </head>
 <body>
+    <div class="ripple-container"></div>
     <div class="container">
         <h2>Create an Account</h2>
         <form action="RegisterServlet" method="post" onsubmit="return validateForm()">

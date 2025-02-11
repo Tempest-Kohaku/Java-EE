@@ -83,7 +83,7 @@
         .back-button {
             padding: 11px 20px;
             position: absolute;
-            right: 52px; /* Adjust as needed */
+            right: 186px; /* Adjust as needed */
             bottom: 666px;
         }
     </style>

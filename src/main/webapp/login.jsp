@@ -7,6 +7,45 @@
     <!-- Import Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
+        /* Ripple Background Container */
+        .ripple-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Place behind other content */
+            overflow: hidden;
+        }
+        .ripple-container::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, #ff0000 10%, transparent 70%);
+            transform: translate(-50%, -50%) scale(1);
+            /* Two animations: one for ripple expansion and one for changing colors */
+            animation: ripple 4s infinite, changeColor 12s infinite;
+        }
+        @keyframes ripple {
+            0% {
+                transform: translate(-50%, -50%) scale(0.5);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(4);
+                opacity: 0;
+            }
+        }
+        @keyframes changeColor {
+            0%   { background: radial-gradient(circle, #ff0000 10%, transparent 70%); }
+            33%  { background: radial-gradient(circle, #00ff00 10%, transparent 70%); }
+            66%  { background: radial-gradient(circle, #0000ff 10%, transparent 70%); }
+            100% { background: radial-gradient(circle, #ff0000 10%, transparent 70%); }
+        }
+        
         /* General Body Styling */
         body {
             font-family: 'Poppins', sans-serif;
@@ -17,7 +56,6 @@
             height: 100vh;
             margin: 0;
         }
-
         /* Container Styling */
         .container {
             background-color: white;
@@ -27,8 +65,9 @@
             width: 100%;
             max-width: 400px;
             text-align: center;
+            position: relative; /* ensure container is above the ripple background */
+            z-index: 1;
         }
-
         /* Header Styling */
         h2 {
             margin-bottom: 25px;
@@ -36,13 +75,11 @@
             color: #333;
             font-weight: 600;
         }
-
         /* Input Group Styling */
         .input-group {
             position: relative;
             margin-bottom: 20px;
         }
-
         .input-group i {
             position: absolute;
             left: 15px;
@@ -50,7 +87,6 @@
             transform: translateY(-50%);
             color: #007BFF;
         }
-
         input {
             width: 153%;
             padding: 12px 15px 12px 45px;
@@ -59,12 +95,10 @@
             font-size: 16px;
             transition: border-color 0.3s ease;
         }
-
         input:focus {
             border-color: #007BFF;
             outline: none;
         }
-
         /* Tooltip Styling */
         .tooltip {
             position: relative;
@@ -72,7 +106,6 @@
             top: 50%;
             display: inline-block;
         }
-
         .tooltip .tooltiptext {
             visibility: hidden;
             width: 200px;
@@ -89,7 +122,6 @@
             opacity: 0;
             transition: opacity 0.3s;
         }
-
         .tooltip .tooltiptext::after {
             content: '';
             position: absolute;
@@ -100,12 +132,10 @@
             border-style: solid;
             border-color: transparent rgba(13, 71, 161, 0.8) transparent transparent;
         }
-
         .tooltip:hover .tooltiptext {
             visibility: visible;
             opacity: 0.9;
         }
-
         /* Button Styling */
         button {
             width: 100%;
@@ -118,29 +148,29 @@
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
-
         button:hover {
             background-color: #0056b3;
         }
-
         /* Links Styling */
         .links {
             margin-top: 25px;
         }
-
         .links a {
             color: #007BFF;
             text-decoration: none;
             font-size: 16px;
             transition: text-decoration 0.3s ease;
         }
-
         .links a:hover {
             text-decoration: underline;
         }
     </style>
 </head>
 <body>
+    <!-- Ripple Background Container -->
+    <div class="ripple-container"></div>
+    
+    <!-- Login Form Container -->
     <div class="container">
         <h2>Login to Your Account</h2>
         <form action="LoginServlet" method="post">
